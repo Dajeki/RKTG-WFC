@@ -41,6 +41,7 @@
      <Compile Include="Assets\Scripts\Level.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
      <Compile Include="Assets\Scripts\ESideTypes.cs" />
+     <Compile Include="Assets\Scripts\UnityEditorScripts\EditorChange.cs" />
     <Reference Include="UnityEngine">
         <HintPath>M:/Program Files M/Unity/2020.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using System;
+using UnityEngine;
 
-public class Level : IWaveCol {
-	private int width;
-	private int height;
-	private double[] tileWeights;
-
+public class Level : MonoBehaviour, IWaveCol {
+	public int width = 1;
+	public int height = 1;
+	public int numAvailPrefabs = 0;
+	public GameObject[] availablePrefabs = new GameObject[ 0 ];
+	public double[] tileWeights = new double[ 0 ];
 	public Tile[][] levelGrid;
 
 	public void propogateGrid( int sideNumber ) {
@@ -34,6 +36,7 @@ public class Level : IWaveCol {
 		return leastEntropicTiles.ToArray();
 	}
 
+	//Look at constraints to handle starting superPosition
 	public void initSuperposition() {
 		throw new System.NotImplementedException();
 	}
