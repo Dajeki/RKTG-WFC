@@ -40,4 +40,13 @@ public class Level : MonoBehaviour, IWaveCol {
 	public void initSuperposition() {
 		throw new System.NotImplementedException();
 	}
+
+	private void OnValidate() {
+		for( int i = 0 ; i < tileWeights.Length ; i++ ) {
+			if( tileWeights[ i ] - 0 < 00000.1 ) {
+				tileWeights[ i ] = 1;
+			}
+		}
+
+	}
 }
