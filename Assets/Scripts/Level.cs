@@ -61,19 +61,19 @@ public class Level : MonoBehaviour, IWaveCol {
 	public void initSuperposition() {
 		levelGrid = new Tile[ height ][];
 		//Loop through the level grid initializing new tiles with available starting Tiles
-		for( int i = 0 ; i < levelGrid.Length ; i++ ) {
-			levelGrid[ i ] = new Tile[ width ];
-			for( int j = 0 ; j < levelGrid[ i ].Length ; j++ ) {
+		for( int row = 0 ; row < levelGrid.Length ; row++ ) {
+			levelGrid[ row ] = new Tile[ width ];
+			for( int column = 0 ; column < levelGrid[ row ].Length ; column++ ) {
 
 				PrefabRecord[] prefabsWithEmptySides = null;
-				levelGrid[ i ][ j ] = new Tile();
+				levelGrid[ row ][ column ] = new Tile();
 				//If row is even and column is 0
-				if( i % 2 == 0 && j == 0 ) {
+				if( row % 2 == 0 && column == 0 ) {
 					//if row is 0 or if the row is last make sure we have at least 3 empty sides
 					/*
 						* TODO: MAKE SURE THIS BOOLEAN CHECKS OUT. 
 						*/
-					if( i == 0 || i == levelGrid.Length - 1 ) {
+					if( row == 0 || row == levelGrid.Length - 1 ) {
 
 						prefabsWithEmptySides = Array.FindAll<PrefabRecord>( PrefabRecords,
 						prefab => {
@@ -95,10 +95,10 @@ public class Level : MonoBehaviour, IWaveCol {
 				}
 
 				//If the row is even and the column is the last one
-				else if( i % 2 == 0 && j == levelGrid[ i ].Length - 1 ) {
+				else if( row % 2 == 0 && column == levelGrid[ row ].Length - 1 ) {
 
 					//if row is 0 or if the row is last make sure we have at least 4 empty sides
-					if( i == 0 || i == levelGrid.Length - 1 ) {
+					if( row == 0 || row == levelGrid.Length - 1 ) {
 
 						prefabsWithEmptySides = Array.FindAll<PrefabRecord>( PrefabRecords,
 						prefab => {
@@ -117,11 +117,11 @@ public class Level : MonoBehaviour, IWaveCol {
 				}
 
 				//If row is odd and column is 0
-				else if( i % 2 != 0 && j == 0 ) {
+				else if( row % 2 != 0 && column == 0 ) {
 
 					//NEEDS 4 SIDES
 					//if an odd row is last, its first index needs 4 empty sides
-					if( i == levelGrid.Length - 1 ) {
+					if( row == levelGrid.Length - 1 ) {
 						prefabsWithEmptySides = Array.FindAll<PrefabRecord>( PrefabRecords,
 						prefab => {
 							return Array.FindAll<ESideTypes>( prefab.PrefabSidesType,
@@ -142,9 +142,9 @@ public class Level : MonoBehaviour, IWaveCol {
 				}
 
 				//the row is odd and column is the last one
-				else if( i % 2 != 0 && j == levelGrid[ i ].Length - 1 ) {
+				else if( row % 2 != 0 && column == levelGrid[ row ].Length - 1 ) {
 					//if the odd row is last then the last column needs 3 empty sides
-					if( i == levelGrid.Length - 1 ) {
+					if( row == levelGrid.Length - 1 ) {
 						prefabsWithEmptySides = Array.FindAll<PrefabRecord>( PrefabRecords,
 						prefab => {
 							return Array.FindAll<ESideTypes>( prefab.PrefabSidesType,
@@ -168,7 +168,7 @@ public class Level : MonoBehaviour, IWaveCol {
 					NEEDS 2 SIDES
 					*/
 
-				else if( ( i == 0 || i == levelGrid.Length - 1 ) && ( j != 0 || j != levelGrid[ i ].Length ) ) {
+				else if( ( row == 0 || row == levelGrid.Length - 1 ) && ( column != 0 || column != levelGrid[ row ].Length ) ) {
 					prefabsWithEmptySides = Array.FindAll<PrefabRecord>( PrefabRecords,
 						prefab => {
 							return Array.FindAll<ESideTypes>( prefab.PrefabSidesType,
@@ -181,13 +181,13 @@ public class Level : MonoBehaviour, IWaveCol {
 					if nothing else has been retreived then it can be anything so copy the whole prefabrecords
 					*/
 				if( prefabsWithEmptySides == null ) {
-					levelGrid[ i ][ j ].acceptablePrefabs = new HashSet<PrefabRecord>( PrefabRecords );
+					levelGrid[ row ][ column ].acceptablePrefabs = new HashSet<PrefabRecord>( PrefabRecords );
 				} else {
-					levelGrid[ i ][ j ].acceptablePrefabs = new HashSet<PrefabRecord>( prefabsWithEmptySides );
+					levelGrid[ row ][ column ].acceptablePrefabs = new HashSet<PrefabRecord>( prefabsWithEmptySides );
 				}
 
-				PrefabRecord[] test = new PrefabRecord[ levelGrid[ i ][ j ].acceptablePrefabs.Count ];
-				levelGrid[ i ][ j ].acceptablePrefabs.CopyTo( test );
+				PrefabRecord[] test = new PrefabRecord[ levelGrid[ row ][ column ].acceptablePrefabs.Count ];
+				levelGrid[ row ][ column ].acceptablePrefabs.CopyTo( test );
 				Debug.Log( string.Join<PrefabRecord>( ",", test ) );
 			}
 		}

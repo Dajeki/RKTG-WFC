@@ -3,13 +3,34 @@ using System.Collections.Generic;
 
 public class Tile {
 	public PrefabRecord info;
-	public double entropy;
-	public HashSet<PrefabRecord> acceptablePrefabs = new HashSet<PrefabRecord>();
+	double _entropy;
+	HashSet<PrefabRecord> _acceptablePrefabs = new HashSet<PrefabRecord>();
 
-	public double calcEntropy() {
+	public double entropy {
+		get { return entropy; }
+		protected set {
+			_entropy = value;
+		}
+	}
+	public HashSet<PrefabRecord> acceptablePrefabs {
+		get { return _acceptablePrefabs; }
+		set {
+			calcEntropy();
+			_acceptablePrefabs = value;
+		}
+	}
 
+	//Call this when the _acceptablePrefab set is changed.
+	private void calcEntropy() {
+		double totalSumWeights = 0;
+		double totalSumLogWeights = 0;
+		foreach( PrefabRecord record in _acceptablePrefabs ) {
+			totalSumWeights += record.TileWeight;
+			totalSumLogWeights += Mathf.Log( (float)record.TileWeight, 2 );
+		}
+		float logTotal = Mathf.Log( (float)totalSumWeights, 2 );
 
-		throw new System.NotImplementedException();
+		_entropy = logTotal - ( totalSumLogWeights / totalSumWeights ) + Random.Range( 0f, .2f );
 	}
 
 	//Parameter to show what side you want on the array
