@@ -186,9 +186,10 @@ public class Level : MonoBehaviour, IWaveCol {
 					levelGrid[ row ][ column ].acceptablePrefabs = new HashSet<PrefabRecord>( prefabsWithEmptySides );
 				}
 
-				PrefabRecord[] test = new PrefabRecord[ levelGrid[ row ][ column ].acceptablePrefabs.Count ];
-				levelGrid[ row ][ column ].acceptablePrefabs.CopyTo( test );
-				Debug.Log( string.Join<PrefabRecord>( ",", test ) );
+				//Debug Output
+				// PrefabRecord[] test = new PrefabRecord[ levelGrid[ row ][ column ].acceptablePrefabs.Count ];
+				// levelGrid[ row ][ column ].acceptablePrefabs.CopyTo( test );
+				// Debug.Log( string.Join<PrefabRecord>( ",", test ) );
 			}
 		}
 	}
