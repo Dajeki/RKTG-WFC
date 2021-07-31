@@ -6,6 +6,9 @@ public class Tile {
 	double _entropy;
 	HashSet<PrefabRecord> _acceptablePrefabs = new HashSet<PrefabRecord>();
 
+	//TODO: Find a way to get the TileSides into the size of this array
+	public ESideTypes[] neighborSides = new ESideTypes[ 5 ];
+
 	public double entropy {
 		get { return entropy; }
 		protected set {
