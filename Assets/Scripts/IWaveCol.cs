@@ -1,5 +1,5 @@
 public interface IWaveCol {
-	abstract void propogateGrid( int sideNumber );
+	abstract void propogateGrid();
 	abstract Tile[] getLeastEntropic();
 	abstract void initSuperposition();
 }
