@@ -37,9 +37,8 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
-     <Compile Include="Assets\Scripts\IWaveCol.cs" />
-     <Compile Include="Assets\Scripts\Level.cs" />
      <Compile Include="Assets\Scripts\Tile.cs" />
+     <Compile Include="Assets\Scripts\Level.cs" />
      <Compile Include="Assets\Scripts\ESideTypes.cs" />
      <Compile Include="Assets\Scripts\UnityEditorScripts\EditorChange.cs" />
     <Reference Include="UnityEngine">
